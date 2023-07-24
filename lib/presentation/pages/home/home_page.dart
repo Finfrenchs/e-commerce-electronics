@@ -1,9 +1,11 @@
+import 'package:e_commerce_electronics/bloc/checkout/checkout_bloc.dart';
 import 'package:e_commerce_electronics/common/theme.dart';
 import 'package:e_commerce_electronics/presentation/pages/home/widgets/ads_widget.dart';
 import 'package:e_commerce_electronics/presentation/pages/home/widgets/all_product_widget.dart';
 import 'package:e_commerce_electronics/presentation/pages/home/widgets/list_category.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -89,26 +91,53 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.only(
                     left: 2,
                   ),
-                  child: badges.Badge(
-                    badgeStyle: badges.BadgeStyle(
-                      elevation: 0,
-                      badgeColor: blueColor,
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 1,
-                        horizontal: 4,
-                      ),
-                    ),
-                    badgeContent: Text(
-                      '4',
-                      style: whiteTextStyle.copyWith(
-                        fontWeight: regular,
-                      ),
-                    ),
-                    child: Icon(
-                      Icons.shopping_cart_outlined,
-                      color: blueColor,
-                      size: 26,
-                    ),
+                  child: BlocBuilder<CheckoutBloc, CheckoutState>(
+                    builder: (context, state) {
+                      if (state is CheckoutLoaded) {
+                        return badges.Badge(
+                          badgeStyle: badges.BadgeStyle(
+                            elevation: 0,
+                            badgeColor: blueColor,
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 1,
+                              horizontal: 4,
+                            ),
+                          ),
+                          badgeContent: Text(
+                            '${state.items.length}',
+                            style: whiteTextStyle.copyWith(
+                              fontWeight: regular,
+                            ),
+                          ),
+                          child: Icon(
+                            Icons.shopping_cart_outlined,
+                            color: blueColor,
+                            size: 26,
+                          ),
+                        );
+                      }
+                      return badges.Badge(
+                        badgeStyle: badges.BadgeStyle(
+                          elevation: 0,
+                          badgeColor: blueColor,
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 1,
+                            horizontal: 4,
+                          ),
+                        ),
+                        badgeContent: Text(
+                          '0',
+                          style: whiteTextStyle.copyWith(
+                            fontWeight: regular,
+                          ),
+                        ),
+                        child: Icon(
+                          Icons.shopping_cart_outlined,
+                          color: blueColor,
+                          size: 26,
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),

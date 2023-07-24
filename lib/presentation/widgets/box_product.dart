@@ -3,16 +3,22 @@ import 'package:e_commerce_electronics/common/theme.dart';
 import 'package:flutter/material.dart';
 
 class BoxProduct extends StatelessWidget {
-  final String imageProduct;
-  final String name;
-  final String description;
-  final int price;
+  final String? imageProduct;
+  final String? name;
+  final String? description;
+  final String? price;
+  final String? count;
+  final VoidCallback? onTapRemove;
+  final VoidCallback? onTapAdd;
   const BoxProduct({
     super.key,
     required this.imageProduct,
     required this.name,
     required this.description,
     required this.price,
+    required this.count,
+    this.onTapAdd,
+    this.onTapRemove,
   });
 
   @override
@@ -38,7 +44,7 @@ class BoxProduct extends StatelessWidget {
           Stack(
             children: [
               Hero(
-                tag: imageProduct,
+                tag: imageProduct!,
                 child: Container(
                   width: double.infinity,
                   height: 100,
@@ -48,8 +54,8 @@ class BoxProduct extends StatelessWidget {
                       topRight: Radius.circular(15),
                     ),
                     image: DecorationImage(
-                      image: AssetImage(
-                        imageProduct,
+                      image: NetworkImage(
+                        imageProduct!,
                       ),
                       fit: BoxFit.cover,
                     ),
@@ -81,7 +87,7 @@ class BoxProduct extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  name,
+                  name!,
                   maxLines: 2,
                   style: blackTextStyle.copyWith(
                     fontWeight: bold,
@@ -92,7 +98,7 @@ class BoxProduct extends StatelessWidget {
                   height: 5,
                 ),
                 Text(
-                  description,
+                  description!,
                   maxLines: 2,
                   style: greyTextStyle.copyWith(
                     fontWeight: regular,
@@ -100,45 +106,81 @@ class BoxProduct extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      formatCurrency(price),
-                      style: blackTextStyle.copyWith(
-                        fontWeight: bold,
-                        fontSize: 14,
-                      ),
-                    ),
-                    const Spacer(),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        height: 35,
-                        width: 35,
-                        decoration: BoxDecoration(
-                          color: blueColor,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Center(
-                          child: Icon(
-                            Icons.add,
-                            size: 20,
-                            color: whiteColor,
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
               ],
             ),
           ),
+          const Spacer(),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    formatCurrency(
+                      int.parse(price!),
+                    ),
+                    style: blackTextStyle.copyWith(
+                      fontWeight: black,
+                      fontSize: 12,
+                    ),
+                  ),
+                  const Spacer(),
+                  GestureDetector(
+                    onTap: onTapRemove,
+                    child: Container(
+                      height: 20,
+                      width: 20,
+                      decoration: BoxDecoration(
+                        color: blueColor,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Icon(
+                          Icons.remove,
+                          size: 16,
+                          color: whiteColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 4,
+                  ),
+                  Text(
+                    '$count',
+                    style: blackTextStyle.copyWith(
+                      fontWeight: regular,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 4,
+                  ),
+                  GestureDetector(
+                    onTap: onTapAdd,
+                    child: Container(
+                      height: 20,
+                      width: 20,
+                      decoration: BoxDecoration(
+                        color: blueColor,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Icon(
+                          Icons.add,
+                          size: 16,
+                          color: whiteColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
           const SizedBox(
-            height: 5,
+            height: 15,
           ),
         ],
       ),

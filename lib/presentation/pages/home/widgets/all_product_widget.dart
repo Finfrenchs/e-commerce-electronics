@@ -1,10 +1,24 @@
-import 'package:e_commerce_electronics/common/global_variables.dart';
+import 'package:e_commerce_electronics/bloc/checkout/checkout_bloc.dart';
+import 'package:e_commerce_electronics/bloc/get_products/get_products_bloc.dart';
 import 'package:e_commerce_electronics/common/theme.dart';
+import 'package:e_commerce_electronics/data/models/list_product_model.dart';
 import 'package:e_commerce_electronics/presentation/widgets/box_product.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AllProduct extends StatelessWidget {
+class AllProduct extends StatefulWidget {
   const AllProduct({super.key});
+
+  @override
+  State<AllProduct> createState() => _AllProductState();
+}
+
+class _AllProductState extends State<AllProduct> {
+  @override
+  void initState() {
+    context.read<GetProductsBloc>().add(DoGetProductsEvent());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,32 +45,72 @@ class AllProduct extends StatelessWidget {
         const SizedBox(
           height: 15,
         ),
-        GridView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-          ),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 15,
-            crossAxisSpacing: 10,
-            childAspectRatio: 0.63,
-          ),
-          itemBuilder: (context, index) {
-            return BoxProduct(
-              imageProduct: GlobalVariables.categoryImageProducts[index]
-                      ['image']
-                  .toString(),
-              name: GlobalVariables.categoryImageProducts[index]['name']
-                  .toString(),
-              description: GlobalVariables.categoryImageProducts[index]
-                      ['description']
-                  .toString(),
-              price: GlobalVariables.categoryImageProducts[index]['price'],
+        BlocBuilder<GetProductsBloc, GetProductsState>(
+          builder: (context, state) {
+            if (state is GetProductsFailed) {
+              return const Center(
+                child: Text("Failed to load data."),
+              );
+            }
+
+            if (state is GetProductsLoaded) {
+              if (state.data.data!.isEmpty) {
+                return const Center(
+                  child: Text('Data is empty.'),
+                );
+              }
+              return GridView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                ),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 15,
+                  crossAxisSpacing: 10,
+                  childAspectRatio: 0.63,
+                ),
+                itemBuilder: (context, index) {
+                  final Product product = state.data.data![index];
+                  return BlocBuilder<CheckoutBloc, CheckoutState>(
+                    builder: (context, state) {
+                      if (state is CheckoutLoaded) {
+                        final itemCount = state.items
+                            .where((item) => item.id == product.id)
+                            .length;
+                        return BoxProduct(
+                          imageProduct: product.attributes!.picture.toString(),
+                          name: product.attributes!.name.toString(),
+                          description:
+                              product.attributes!.description.toString(),
+                          price: product.attributes!.price!.toString(),
+                          count: '$itemCount',
+                          onTapAdd: () {
+                            context.read<CheckoutBloc>().add(
+                                  AddToChartEvent(product: product),
+                                );
+                          },
+                          onTapRemove: () {
+                            context.read<CheckoutBloc>().add(
+                                  RemoveFromChartEvent(product: product),
+                                );
+                          },
+                        );
+                      }
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    },
+                  );
+                },
+                itemCount: state.data.data!.length,
+              );
+            }
+            return const Center(
+              child: CircularProgressIndicator(),
             );
           },
-          itemCount: GlobalVariables.categoryImageProducts.length,
         ),
         const SizedBox(
           height: 20,
