@@ -1,5 +1,6 @@
 import 'package:e_commerce_electronics/common/global_variables.dart';
 import 'package:e_commerce_electronics/common/theme.dart';
+import 'package:e_commerce_electronics/presentation/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 
 class BoxProduct extends StatelessWidget {
@@ -127,23 +128,9 @@ class BoxProduct extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  GestureDetector(
+                  CustomButtonCount(
                     onTap: onTapRemove,
-                    child: Container(
-                      height: 20,
-                      width: 20,
-                      decoration: BoxDecoration(
-                        color: blueColor,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Center(
-                        child: Icon(
-                          Icons.remove,
-                          size: 16,
-                          color: whiteColor,
-                        ),
-                      ),
-                    ),
+                    icon: Icons.remove,
                   ),
                   const SizedBox(
                     width: 4,
@@ -157,23 +144,9 @@ class BoxProduct extends StatelessWidget {
                   const SizedBox(
                     width: 4,
                   ),
-                  GestureDetector(
+                  CustomButtonCount(
                     onTap: onTapAdd,
-                    child: Container(
-                      height: 20,
-                      width: 20,
-                      decoration: BoxDecoration(
-                        color: blueColor,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Center(
-                        child: Icon(
-                          Icons.add,
-                          size: 16,
-                          color: whiteColor,
-                        ),
-                      ),
-                    ),
+                    icon: Icons.add,
                   ),
                 ],
               ),

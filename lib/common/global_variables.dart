@@ -2,7 +2,7 @@ import 'package:intl/intl.dart';
 
 //Global variable
 class GlobalVariables {
-  static const baseUrl = 'https://bbcc-110-137-103-108.ngrok.io';
+  static const baseUrl = 'https://4350-114-4-218-139.ngrok.io';
 
   static const List<String> bannerImages = [
     'https://cdn0-production-images-kly.akamaized.net/4mEp63q7ELZGsTy3IC5PbcavnN8=/1200x675/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/4390112/original/027830700_1681181181-TCL_Vidio.jpg',
@@ -17,14 +17,14 @@ class GlobalVariables {
       'description':
           "Mohon melakukan UNBOXING VIDEO saat barang diterima agar kami dapat bantu proses komplain dan asuransi,, terima kasih",
       'image': "assets/images/tv-hisense.jpg",
-      'price': 1600000,
+      'price': '1600000',
     },
     {
       'name': 'Samsung Smart TV 65 inch Neo QLED 4K QN90B',
       'description':
           "Complaint mengenai kerusakaan pada product maupun material product yang kurang maksimal kami terima 3 hari setelah barang diterima oleh customer dan juga customer wajib sertakan video unboxing",
       'image': 'assets/images/tv-samsung.jpg',
-      'price': 2000000,
+      'price': '2000000',
     },
     {
       'name':
@@ -32,7 +32,7 @@ class GlobalVariables {
       'description':
           'Membuatmu tetap terkoneksi dengan beragam konektivitas yang dihadirkan V35KP ini. Dilengkapi dengan pengalaman audio visual yang istimewa, membuatmu nyaman menonton film favoritmu kapan saja. Digital Noise Reduction memungkinkanmu menonton dengan audio yang jernih dan menenangkan.',
       'image': 'assets/images/tv-toshiba.jpg',
-      'price': 2600000,
+      'price': '2600000',
     },
     {
       'name':
@@ -40,7 +40,7 @@ class GlobalVariables {
       'description':
           'Nikmati pengalaman menonton TV yang sesungguhnya dengan LG 32LM550 Flat HD LED TV 32 Inch [32"/DVB-T2]. Dengan desain yang modern dan kokoh, TV model terbaru ini menghadirkan berbagai fitur fungsional yang menarik dan canggih. Nikmati berbagai acara dan film bersama teman dan keluarga Anda dan rasakan kualitas gambar yang tajam dan jernih.',
       'image': 'assets/images/tv-lg.jpg',
-      'price': 3600000,
+      'price': '3600000',
     },
   ];
 
