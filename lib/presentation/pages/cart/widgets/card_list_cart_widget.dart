@@ -43,12 +43,6 @@ class CardListCartWidget extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Expanded(
-            //   child: CustomCheckboxWidget(
-            //     onChanged: onChanged!,
-            //     value: value!,
-            //   ),
-            // ),
             Checkbox(
               value: value,
               onChanged: onChanged,
@@ -62,7 +56,7 @@ class CardListCartWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   image: DecorationImage(
-                    image: AssetImage(image!),
+                    image: NetworkImage(image!),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -123,28 +117,46 @@ class CardListCartWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           CustomButtonCount(
-                            height: 25,
-                            width: 25,
+                            height: 30,
+                            width: 30,
                             onTap: onTapRemove,
                             icon: Icons.remove,
+                            shape: BoxShape.rectangle,
+                            iconColor: blueColor,
+                            backgroundColor: greyColor.withOpacity(0.5),
                           ),
                           const SizedBox(
-                            width: 4,
+                            width: 8,
                           ),
-                          Text(
-                            '$count',
-                            style: blackTextStyle.copyWith(
-                              fontWeight: regular,
+                          Container(
+                            height: 30,
+                            width: 25,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                color: whiteColor,
+                                borderRadius: BorderRadius.circular(5),
+                                border: Border.all(
+                                  width: 1,
+                                  color: greyColor,
+                                )),
+                            child: Text(
+                              '$count',
+                              style: blackTextStyle.copyWith(
+                                fontWeight: bold,
+                              ),
                             ),
                           ),
                           const SizedBox(
-                            width: 4,
+                            width: 8,
                           ),
                           CustomButtonCount(
-                            height: 25,
-                            width: 25,
+                            height: 30,
+                            width: 30,
                             onTap: onTapAdd,
                             icon: Icons.add,
+                            shape: BoxShape.rectangle,
+                            iconColor: blueColor,
+                            backgroundColor: greyColor.withOpacity(0.5),
                           ),
                         ],
                       ),

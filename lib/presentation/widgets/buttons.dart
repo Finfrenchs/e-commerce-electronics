@@ -82,6 +82,9 @@ class CustomButtonCount extends StatelessWidget {
   final double? height;
   final double? width;
   final IconData icon;
+  final BoxShape? shape;
+  final Color? backgroundColor;
+  final Color? iconColor;
 
   const CustomButtonCount({
     super.key,
@@ -89,6 +92,9 @@ class CustomButtonCount extends StatelessWidget {
     this.height = 20,
     this.width = 20,
     required this.icon,
+    this.shape = BoxShape.circle,
+    this.backgroundColor = blueColor,
+    this.iconColor = whiteColor,
   });
 
   @override
@@ -99,14 +105,14 @@ class CustomButtonCount extends StatelessWidget {
         height: height,
         width: width,
         decoration: BoxDecoration(
-          color: blueColor,
-          shape: BoxShape.circle,
+          color: backgroundColor,
+          shape: shape!,
         ),
         child: Center(
           child: Icon(
             icon,
             size: 16,
-            color: whiteColor,
+            color: iconColor,
           ),
         ),
       ),

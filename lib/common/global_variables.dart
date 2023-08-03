@@ -2,7 +2,8 @@ import 'package:intl/intl.dart';
 
 //Global variable
 class GlobalVariables {
-  static const baseUrl = 'https://4350-114-4-218-139.ngrok.io';
+  static const baseUrl = 'https://0239-182-1-118-159.ngrok.io';
+  //static const baseUrl = 'http://localhost:1337';
 
   static const List<String> bannerImages = [
     'https://cdn0-production-images-kly.akamaized.net/4mEp63q7ELZGsTy3IC5PbcavnN8=/1200x675/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/4390112/original/027830700_1681181181-TCL_Vidio.jpg',

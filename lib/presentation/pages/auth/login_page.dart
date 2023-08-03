@@ -1,7 +1,12 @@
+import 'package:e_commerce_electronics/bloc/login/login_bloc.dart';
 import 'package:e_commerce_electronics/common/theme.dart';
+import 'package:e_commerce_electronics/data/datasources/auth_local_datasource.dart';
+import 'package:e_commerce_electronics/data/models/login_request_model.dart';
+import 'package:e_commerce_electronics/presentation/pages/home/home_page.dart';
 import 'package:e_commerce_electronics/presentation/widgets/buttons.dart';
 import 'package:e_commerce_electronics/presentation/widgets/form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,11 +16,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final nameController = TextEditingController(text: '');
-  final usernameController = TextEditingController(text: '');
-  final emailController = TextEditingController(text: '');
-  final passwordController = TextEditingController(text: '');
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   bool _obscureText = true;
+
+  final _loginFormKey = GlobalKey<FormState>();
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -25,10 +30,7 @@ class _LoginPageState extends State<LoginPage> {
 
   //add validation for data empty
   bool validate() {
-    if (nameController.text.isEmpty ||
-        usernameController.text.isEmpty ||
-        emailController.text.isEmpty ||
-        passwordController.text.isEmpty) {
+    if (emailController.text.isEmpty || passwordController.text.isEmpty) {
       return false;
     }
     return true;
@@ -89,54 +91,93 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ],
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                //NOTE: EMAIL INPUT
-                CustomFormField(
-                  title: 'Email Address',
-                  obscureText: false,
-                  controller: emailController,
-                  prefixIcon: Icon(
-                    Icons.email,
-                    color: blueColor,
+            child: Form(
+              key: _loginFormKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  //NOTE: EMAIL INPUT
+                  CustomFormField(
+                    title: 'Email Address',
+                    obscureText: false,
+                    controller: emailController,
+                    prefixIcon: const Icon(
+                      Icons.email,
+                      color: blueColor,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                //NOTE PASSWORD INPUT
-                CustomFormField(
-                  title: 'Password',
-                  obscureText: _obscureText,
-                  controller: passwordController,
-                  prefixIcon: Icon(
-                    Icons.key_rounded,
-                    color: blueColor,
+                  const SizedBox(
+                    height: 16,
                   ),
-                  sufixIcon: GestureDetector(
-                    onTap: _togglePasswordVisibility,
-                    child: Icon(
-                        _obscureText ? Icons.visibility : Icons.visibility_off),
+                  //NOTE PASSWORD INPUT
+                  CustomFormField(
+                    title: 'Password',
+                    obscureText: _obscureText,
+                    controller: passwordController,
+                    prefixIcon: const Icon(
+                      Icons.key_rounded,
+                      color: blueColor,
+                    ),
+                    sufixIcon: GestureDetector(
+                      onTap: _togglePasswordVisibility,
+                      child: Icon(_obscureText
+                          ? Icons.visibility
+                          : Icons.visibility_off),
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                CustomFilledButton(
-                  title: 'Login',
-                  onPressed: () {
-                    if (validate()) {
-                      //   context
-                      //       .read<AuthBloc>()
-                      //       .add(AuthCheckEmail(emailController.text));
-                      // } else {
-                      //   showCustomSnackbar(
-                      //       context, 'Semua field harus diisi.');
-                    }
-                  },
-                )
-              ],
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  BlocConsumer<LoginBloc, LoginState>(
+                    listener: (context, state) async {
+                      if (state is LoginLoaded) {
+                        await AuthLocalDatasource().saveAuthData(state.model);
+                        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                          builder: (context) {
+                            return const HomePage();
+                          },
+                        ), (route) => false);
+                      }
+                      if (state is LoginFailed) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: redColor,
+                            content: Text('Login failed, check your data.'),
+                          ),
+                        );
+                      }
+                    },
+                    builder: (context, state) {
+                      if (state is LoginLoading) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      return CustomFilledButton(
+                        title: 'Login',
+                        onPressed: () {
+                          if (_loginFormKey.currentState!.validate()) {
+                            final model = LoginRequestModel(
+                              identifier: emailController.text,
+                              password: passwordController.text,
+                            );
+                            context
+                                .read<LoginBloc>()
+                                .add(DoLoginEvent(model: model));
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                backgroundColor: redColor,
+                                content: Text('field cannot be empty.'),
+                              ),
+                            );
+                          }
+                        },
+                      );
+                    },
+                  )
+                ],
+              ),
             ),
           ),
           const SizedBox(

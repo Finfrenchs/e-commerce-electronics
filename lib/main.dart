@@ -1,5 +1,7 @@
 import 'package:e_commerce_electronics/bloc/checkout/checkout_bloc.dart';
 import 'package:e_commerce_electronics/bloc/get_products/get_products_bloc.dart';
+import 'package:e_commerce_electronics/bloc/login/login_bloc.dart';
+import 'package:e_commerce_electronics/data/datasources/auth_remote_datasource.dart';
 import 'package:e_commerce_electronics/data/datasources/product_remote_datasource.dart';
 import 'package:e_commerce_electronics/presentation/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +26,11 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => CheckoutBloc(),
+        ),
+        BlocProvider(
+          create: (context) => LoginBloc(
+            AuthRemoteDatasource(),
+          ),
         ),
       ],
       child: MaterialApp(

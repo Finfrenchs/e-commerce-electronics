@@ -17,6 +17,8 @@ class _RegisterPageState extends State<RegisterPage> {
   final passwordController = TextEditingController(text: '');
   bool _obscureText = true;
 
+  final _registerFormKey = GlobalKey<FormState>();
+
   void _togglePasswordVisibility() {
     setState(() {
       _obscureText = !_obscureText;
@@ -89,80 +91,84 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ],
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                //NOTE: NAME INPUT
-                CustomFormField(
-                  title: 'Full Name',
-                  obscureText: false,
-                  controller: nameController,
-                  prefixIcon: Icon(
-                    Icons.person,
-                    color: blueColor,
+            child: Form(
+              key: _registerFormKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  //NOTE: NAME INPUT
+                  CustomFormField(
+                    title: 'Full Name',
+                    obscureText: false,
+                    controller: nameController,
+                    prefixIcon: const Icon(
+                      Icons.person,
+                      color: blueColor,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                //NOTE: USERNAME INPUT
-                CustomFormField(
-                  title: 'Username',
-                  obscureText: false,
-                  controller: usernameController,
-                  prefixIcon: Icon(
-                    Icons.person_2,
-                    color: blueColor,
+                  const SizedBox(
+                    height: 16,
                   ),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                //NOTE: EMAIL INPUT
-                CustomFormField(
-                  title: 'Email Address',
-                  obscureText: false,
-                  controller: emailController,
-                  prefixIcon: Icon(
-                    Icons.email,
-                    color: blueColor,
+                  //NOTE: USERNAME INPUT
+                  CustomFormField(
+                    title: 'Username',
+                    obscureText: false,
+                    controller: usernameController,
+                    prefixIcon: const Icon(
+                      Icons.person_2,
+                      color: blueColor,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                //NOTE PASSWORD INPUT
-                CustomFormField(
-                  title: 'Password',
-                  obscureText: _obscureText,
-                  controller: passwordController,
-                  prefixIcon: Icon(
-                    Icons.key_rounded,
-                    color: blueColor,
+                  const SizedBox(
+                    height: 16,
                   ),
-                  sufixIcon: GestureDetector(
-                    onTap: _togglePasswordVisibility,
-                    child: Icon(
-                        _obscureText ? Icons.visibility : Icons.visibility_off),
+                  //NOTE: EMAIL INPUT
+                  CustomFormField(
+                    title: 'Email Address',
+                    obscureText: false,
+                    controller: emailController,
+                    prefixIcon: const Icon(
+                      Icons.email,
+                      color: blueColor,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                CustomFilledButton(
-                  title: 'Register',
-                  onPressed: () {
-                    if (validate()) {
-                      //   context
-                      //       .read<AuthBloc>()
-                      //       .add(AuthCheckEmail(emailController.text));
-                      // } else {
-                      //   showCustomSnackbar(
-                      //       context, 'Semua field harus diisi.');
-                    }
-                  },
-                )
-              ],
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  //NOTE PASSWORD INPUT
+                  CustomFormField(
+                    title: 'Password',
+                    obscureText: _obscureText,
+                    controller: passwordController,
+                    prefixIcon: const Icon(
+                      Icons.key_rounded,
+                      color: blueColor,
+                    ),
+                    sufixIcon: GestureDetector(
+                      onTap: _togglePasswordVisibility,
+                      child: Icon(_obscureText
+                          ? Icons.visibility
+                          : Icons.visibility_off),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  CustomFilledButton(
+                    title: 'Register',
+                    onPressed: () {
+                      if (validate()) {
+                        //   context
+                        //       .read<AuthBloc>()
+                        //       .add(AuthCheckEmail(emailController.text));
+                        // } else {
+                        //   showCustomSnackbar(
+                        //       context, 'Semua field harus diisi.');
+                      }
+                    },
+                  )
+                ],
+              ),
             ),
           ),
           const SizedBox(

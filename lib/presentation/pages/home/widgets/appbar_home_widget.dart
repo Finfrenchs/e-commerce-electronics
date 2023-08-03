@@ -25,8 +25,8 @@ class AppBarHomeWidget extends StatelessWidget {
                 decoration: InputDecoration(
                   prefixIcon: InkWell(
                     onTap: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.only(
+                    child: const Padding(
+                      padding: EdgeInsets.only(
                         left: 6,
                       ),
                       child: Icon(
@@ -83,10 +83,10 @@ class AppBarHomeWidget extends StatelessWidget {
               builder: (context, state) {
                 if (state is CheckoutLoaded) {
                   return badges.Badge(
-                    badgeStyle: badges.BadgeStyle(
+                    badgeStyle: const badges.BadgeStyle(
                       elevation: 0,
                       badgeColor: blueColor,
-                      padding: const EdgeInsets.symmetric(
+                      padding: EdgeInsets.symmetric(
                         vertical: 1,
                         horizontal: 4,
                       ),
@@ -97,7 +97,7 @@ class AppBarHomeWidget extends StatelessWidget {
                         fontWeight: regular,
                       ),
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Icons.shopping_cart_outlined,
                       color: blueColor,
                       size: 26,
@@ -105,10 +105,10 @@ class AppBarHomeWidget extends StatelessWidget {
                   );
                 }
                 return badges.Badge(
-                  badgeStyle: badges.BadgeStyle(
+                  badgeStyle: const badges.BadgeStyle(
                     elevation: 0,
                     badgeColor: blueColor,
-                    padding: const EdgeInsets.symmetric(
+                    padding: EdgeInsets.symmetric(
                       vertical: 1,
                       horizontal: 4,
                     ),
@@ -119,7 +119,7 @@ class AppBarHomeWidget extends StatelessWidget {
                       fontWeight: regular,
                     ),
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.shopping_cart_outlined,
                     color: blueColor,
                     size: 26,
