@@ -1,6 +1,6 @@
 import 'package:e_commerce_electronics/common/theme.dart';
 import 'package:e_commerce_electronics/presentation/pages/home/widgets/ads_widget.dart';
-import 'package:e_commerce_electronics/presentation/pages/home/widgets/all_product_widget.dart';
+import 'package:e_commerce_electronics/presentation/pages/home/widgets/list_product_widget.dart';
 import 'package:e_commerce_electronics/presentation/pages/home/widgets/appbar_home_widget.dart';
 import 'package:e_commerce_electronics/presentation/pages/home/widgets/custom_bottom_appbar.dart';
 import 'package:e_commerce_electronics/presentation/pages/home/widgets/list_category.dart';
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
           ),
           AdsWidget(),
           ListCategory(),
-          AllProduct(),
+          ListProduct(),
         ],
       ),
       bottomNavigationBar: CustomBottomAppbar(

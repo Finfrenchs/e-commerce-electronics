@@ -9,6 +9,9 @@ class BoxProduct extends StatelessWidget {
   final String? description;
   final String? price;
   final String? count;
+  final IconData? icon;
+  final Color? iconColor;
+  final VoidCallback? onTapFavorite;
   final VoidCallback? onTapRemove;
   final VoidCallback? onTapAdd;
   const BoxProduct({
@@ -18,6 +21,9 @@ class BoxProduct extends StatelessWidget {
     required this.description,
     required this.price,
     required this.count,
+    required this.icon,
+    required this.iconColor,
+    this.onTapFavorite,
     this.onTapAdd,
     this.onTapRemove,
   });
@@ -67,11 +73,11 @@ class BoxProduct extends StatelessWidget {
                 top: 10,
                 right: 10,
                 child: InkWell(
-                  onTap: () {},
+                  onTap: onTapFavorite,
                   child: Icon(
-                    Icons.favorite_outline_rounded,
+                    icon,
                     size: 25,
-                    color: greyColor,
+                    color: iconColor,
                   ),
                 ),
               )
@@ -116,7 +122,7 @@ class BoxProduct extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
                     formatCurrency(
@@ -128,23 +134,25 @@ class BoxProduct extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
+                  // CustomButtonCount(
+                  //   onTap: onTapRemove,
+                  //   icon: Icons.remove,
+                  // ),
+                  // const SizedBox(
+                  //   width: 4,
+                  // ),
+                  // Text(
+                  //   '$count',
+                  //   style: blackTextStyle.copyWith(
+                  //     fontWeight: regular,
+                  //   ),
+                  // ),
+                  // const SizedBox(
+                  //   width: 4,
+                  // ),
                   CustomButtonCount(
-                    onTap: onTapRemove,
-                    icon: Icons.remove,
-                  ),
-                  const SizedBox(
-                    width: 4,
-                  ),
-                  Text(
-                    '$count',
-                    style: blackTextStyle.copyWith(
-                      fontWeight: regular,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 4,
-                  ),
-                  CustomButtonCount(
+                    height: 40,
+                    width: 40,
                     onTap: onTapAdd,
                     icon: Icons.add,
                   ),

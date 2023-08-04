@@ -16,7 +16,7 @@ class PaymentMethodsWidget extends StatelessWidget {
         top: 25,
         bottom: 20,
       ),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: lightBackgroundColor,
       ),
       child: Column(
@@ -26,8 +26,8 @@ class PaymentMethodsWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                Icons.local_shipping_outlined,
+              const Icon(
+                Icons.payment_outlined,
                 color: blueColor,
               ),
               const SizedBox(

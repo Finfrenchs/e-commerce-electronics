@@ -6,14 +6,16 @@ import 'package:e_commerce_electronics/presentation/widgets/box_product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AllProduct extends StatefulWidget {
-  const AllProduct({super.key});
+class ListProduct extends StatefulWidget {
+  const ListProduct({super.key});
 
   @override
-  State<AllProduct> createState() => _AllProductState();
+  State<ListProduct> createState() => _ListProductState();
 }
 
-class _AllProductState extends State<AllProduct> {
+class _ListProductState extends State<ListProduct> {
+  bool isFavorite = false;
+
   @override
   void initState() {
     context.read<GetProductsBloc>().add(DoGetProductsEvent());
@@ -86,6 +88,15 @@ class _AllProductState extends State<AllProduct> {
                               product.attributes!.description.toString(),
                           price: product.attributes!.price!.toString(),
                           count: '$itemCount',
+                          icon: isFavorite != true
+                              ? Icons.favorite_border_rounded
+                              : Icons.favorite_rounded,
+                          iconColor: isFavorite != true ? greyColor : redColor,
+                          onTapFavorite: () {
+                            setState(() {
+                              isFavorite = !isFavorite;
+                            });
+                          },
                           onTapAdd: () {
                             context.read<CheckoutBloc>().add(
                                   AddToChartEvent(product: product),
