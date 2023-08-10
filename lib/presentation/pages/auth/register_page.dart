@@ -1,7 +1,12 @@
+import 'package:e_commerce_electronics/bloc/register/register_bloc.dart';
 import 'package:e_commerce_electronics/common/theme.dart';
+import 'package:e_commerce_electronics/data/datasources/auth_local_datasource.dart';
+import 'package:e_commerce_electronics/data/models/register_request_model.dart';
+import 'package:e_commerce_electronics/presentation/pages/home/home_page.dart';
 import 'package:e_commerce_electronics/presentation/widgets/buttons.dart';
 import 'package:e_commerce_electronics/presentation/widgets/form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -154,25 +159,78 @@ class _RegisterPageState extends State<RegisterPage> {
                   const SizedBox(
                     height: 30,
                   ),
-                  CustomFilledButton(
-                    title: 'Register',
-                    onPressed: () {
-                      if (validate()) {
-                        //   context
-                        //       .read<AuthBloc>()
-                        //       .add(AuthCheckEmail(emailController.text));
-                        // } else {
-                        //   showCustomSnackbar(
-                        //       context, 'Semua field harus diisi.');
-                      }
+                  BlocConsumer<RegisterBloc, RegisterState>(
+                    listener: (context, state) {
+                      state.maybeWhen(
+                          orElse: () {},
+                          failed: () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                backgroundColor: redColor,
+                                content:
+                                    Text('Register failed check your data!'),
+                              ),
+                            );
+                          },
+                          loaded: (model) async {
+                            await AuthLocalDatasource().saveAuthData(model);
+                            Navigator.pushAndRemoveUntil(context,
+                                MaterialPageRoute(
+                              builder: (context) {
+                                return const HomePage();
+                              },
+                            ), (route) => false);
+                          });
                     },
+                    builder: (context, state) => state.maybeWhen(
+                      orElse: () {
+                        return CustomFilledButton(
+                          title: 'Register',
+                          onPressed: () {
+                            if (_registerFormKey.currentState!.validate()) {
+                              final requestModel = RegisterRequestModel(
+                                name: nameController.text,
+                                email: emailController.text,
+                                password: passwordController.text,
+                                username: usernameController.text,
+                              );
+                              context.read<RegisterBloc>().add(
+                                    RegisterEvent.register(requestModel),
+                                  );
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  backgroundColor: redColor,
+                                  content: Text('field cannot be empty.'),
+                                ),
+                              );
+                            }
+                          },
+                        );
+                      },
+                      loading: () => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
                   )
                 ],
               ),
             ),
           ),
           const SizedBox(
-            height: 40,
+            height: 30,
+          ),
+          CustomTextWidgetButton(
+            width: 50,
+            title: 'Continue as a Guest',
+            onPressed: () {},
+            textStyle: greyTextStyle.copyWith(
+              fontSize: 14,
+              fontWeight: bold,
+            ),
+          ),
+          const SizedBox(
+            height: 20,
           ),
           GestureDetector(
             onTap: () {},

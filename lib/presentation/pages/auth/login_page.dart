@@ -2,6 +2,7 @@ import 'package:e_commerce_electronics/bloc/login/login_bloc.dart';
 import 'package:e_commerce_electronics/common/theme.dart';
 import 'package:e_commerce_electronics/data/datasources/auth_local_datasource.dart';
 import 'package:e_commerce_electronics/data/models/login_request_model.dart';
+import 'package:e_commerce_electronics/presentation/pages/auth/register_page.dart';
 import 'package:e_commerce_electronics/presentation/pages/home/home_page.dart';
 import 'package:e_commerce_electronics/presentation/widgets/buttons.dart';
 import 'package:e_commerce_electronics/presentation/widgets/form.dart';
@@ -192,10 +193,35 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           const SizedBox(
-            height: 40,
+            height: 30,
+          ),
+          CustomTextWidgetButton(
+            width: 50,
+            title: 'Continue as a Guest',
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(context,
+                  MaterialPageRoute(builder: (context) {
+                return const HomePage();
+              }), (route) => false);
+            },
+            textStyle: greyTextStyle.copyWith(
+              fontSize: 14,
+            ),
+          ),
+          const SizedBox(
+            height: 20,
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const RegisterPage();
+                  },
+                ),
+              );
+            },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -203,12 +229,22 @@ class _LoginPageState extends State<LoginPage> {
                   'Dont have an account? ',
                   style: greyTextStyle.copyWith(
                     fontSize: 14,
+                    fontWeight: bold,
                   ),
                 ),
                 CustomTextWidgetButton(
                   width: 70,
                   title: 'Register',
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const RegisterPage();
+                        },
+                      ),
+                    );
+                  },
                   textStyle: blackTextStyle.copyWith(
                     fontSize: 14,
                   ),

@@ -5,11 +5,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? leading;
   final Widget? title;
   final double? elevation;
+  final List<Widget>? action;
   const CustomAppBar({
     super.key,
     this.leading,
     this.title,
     this.elevation = 0,
+    this.action,
   });
 
   @override
@@ -19,13 +21,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       flexibleSpace: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: lightBackgroundColor,
         ),
       ),
       elevation: elevation,
       leading: leading,
       title: title,
+      actions: action,
     );
   }
 }

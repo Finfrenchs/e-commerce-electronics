@@ -1,15 +1,19 @@
 import 'package:e_commerce_electronics/common/theme.dart';
 import 'package:e_commerce_electronics/presentation/widgets/box_icons.dart';
+import 'package:e_commerce_electronics/presentation/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 
-class AmountWidget extends StatelessWidget {
-  const AmountWidget({super.key});
+class BalanceProfileWidget extends StatelessWidget {
+  const BalanceProfileWidget({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       height: 80,
+      margin: const EdgeInsets.only(top: 20),
       padding: const EdgeInsets.symmetric(
         vertical: 10,
         horizontal: 20,
@@ -64,38 +68,11 @@ class AmountWidget extends StatelessWidget {
               ],
             ),
             const Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const BoxIcon(
-                  icon: 'assets/icons/ic_voucher.png',
-                  iconColor: toscaColor,
-                  boxBackgroundColor: lightToscaColor,
-                ),
-                const SizedBox(
-                  width: 8,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '12',
-                      style: blackTextStyle.copyWith(
-                        fontWeight: bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                    Text(
-                      'Voucher Available',
-                      style: greyTextStyle.copyWith(
-                        fontWeight: regular,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ],
-                )
-              ],
+            Expanded(
+              child: CustomFilledButton(
+                title: 'Top Up',
+                onPressed: () {},
+              ),
             ),
           ],
         ),
