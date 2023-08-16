@@ -47,6 +47,11 @@ class _ListOrderPageState extends State<ListOrderPage> {
             orElse: () {
               return const DataNotfoundWidget();
             },
+            loading: () {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            },
             loaded: (data) {
               return ListView.builder(
                 padding: const EdgeInsets.all(15),
@@ -133,7 +138,7 @@ class _ListOrderPageState extends State<ListOrderPage> {
                               fontWeight: bold,
                             ),
                             overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
+                            maxLines: 2,
                           ),
                           const SizedBox(
                             height: 20,
