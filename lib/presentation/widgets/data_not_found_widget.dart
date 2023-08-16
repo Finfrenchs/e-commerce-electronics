@@ -10,7 +10,7 @@ class DataNotfoundWidget extends StatelessWidget {
         height: 280,
         width: double.infinity,
         margin: const EdgeInsets.only(
-          top: 100,
+          top: 70,
         ),
         decoration: const BoxDecoration(
           image: DecorationImage(

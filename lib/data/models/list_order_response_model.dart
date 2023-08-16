@@ -1,31 +1,28 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 // To parse this JSON data, do
 //
-//     final listProductModel = listProductModelFromJson(jsonString);
+//     final listOrderResponseModel = listOrderResponseModelFromJson(jsonString);
 
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-
-class ListProductResponseModel {
-  List<Product>? data;
+class ListOrderResponseModel {
+  List<Order>? data;
   Meta? meta;
 
-  ListProductResponseModel({
+  ListOrderResponseModel({
     this.data,
     this.meta,
   });
 
-  factory ListProductResponseModel.fromRawJson(String str) =>
-      ListProductResponseModel.fromJson(json.decode(str));
+  factory ListOrderResponseModel.fromRawJson(String str) =>
+      ListOrderResponseModel.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory ListProductResponseModel.fromJson(Map<String, dynamic> json) =>
-      ListProductResponseModel(
+  factory ListOrderResponseModel.fromJson(Map<String, dynamic> json) =>
+      ListOrderResponseModel(
         data: json["data"] == null
             ? []
-            : List<Product>.from(json["data"]!.map((x) => Product.fromJson(x))),
+            : List<Order>.from(json["data"]!.map((x) => Order.fromJson(x))),
         meta: json["meta"] == null ? null : Meta.fromJson(json["meta"]),
       );
 
@@ -35,32 +32,22 @@ class ListProductResponseModel {
             : List<dynamic>.from(data!.map((x) => x.toJson())),
         "meta": meta?.toJson(),
       };
-
-  @override
-  bool operator ==(covariant ListProductResponseModel other) {
-    if (identical(this, other)) return true;
-
-    return listEquals(other.data, data) && other.meta == meta;
-  }
-
-  @override
-  int get hashCode => data.hashCode ^ meta.hashCode;
 }
 
-class Product {
+class Order {
   int? id;
   Attributes? attributes;
 
-  Product({
+  Order({
     this.id,
     this.attributes,
   });
 
-  factory Product.fromRawJson(String str) => Product.fromJson(json.decode(str));
+  factory Order.fromRawJson(String str) => Order.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory Product.fromJson(Map<String, dynamic> json) => Product(
+  factory Order.fromJson(Map<String, dynamic> json) => Order(
         id: json["id"],
         attributes: json["attributes"] == null
             ? null
@@ -71,41 +58,31 @@ class Product {
         "id": id,
         "attributes": attributes?.toJson(),
       };
-
-  @override
-  bool operator ==(covariant Product other) {
-    if (identical(this, other)) return true;
-
-    return other.id == id && other.attributes == attributes;
-  }
-
-  @override
-  int get hashCode => id.hashCode ^ attributes.hashCode;
 }
 
 class Attributes {
-  String? name;
+  List<Item>? items;
+  int? totalPrice;
+  String? deliveryAddress;
+  String? courierName;
+  int? shippingCost;
   DateTime? createdAt;
   DateTime? updatedAt;
   DateTime? publishedAt;
-  String? description;
-  String? quantity;
-  String? price;
-  bool? isAvailable;
-  String? distributor;
-  String? picture;
+  String? statusOrder;
+  int? userId;
 
   Attributes({
-    this.name,
+    this.items,
+    this.totalPrice,
+    this.deliveryAddress,
+    this.courierName,
+    this.shippingCost,
     this.createdAt,
     this.updatedAt,
     this.publishedAt,
-    this.description,
-    this.quantity,
-    this.price,
-    this.isAvailable,
-    this.distributor,
-    this.picture,
+    this.statusOrder,
+    this.userId,
   });
 
   factory Attributes.fromRawJson(String str) =>
@@ -114,7 +91,13 @@ class Attributes {
   String toRawJson() => json.encode(toJson());
 
   factory Attributes.fromJson(Map<String, dynamic> json) => Attributes(
-        name: json["name"],
+        items: json["items"] == null
+            ? []
+            : List<Item>.from(json["items"]!.map((x) => Item.fromJson(x))),
+        totalPrice: json["totalPrice"],
+        deliveryAddress: json["deliveryAddress"],
+        courierName: json["courierName"],
+        shippingCost: json["shippingCost"],
         createdAt: json["createdAt"] == null
             ? null
             : DateTime.parse(json["createdAt"]),
@@ -124,56 +107,56 @@ class Attributes {
         publishedAt: json["publishedAt"] == null
             ? null
             : DateTime.parse(json["publishedAt"]),
-        description: json["description"],
-        quantity: json["quantity"],
-        price: json["price"],
-        isAvailable: json["isAvailable"],
-        distributor: json["distributor"],
-        picture: json["picture"],
+        statusOrder: json["statusOrder"],
+        userId: json["userId"],
       );
 
   Map<String, dynamic> toJson() => {
-        "name": name,
+        "items": items == null
+            ? []
+            : List<dynamic>.from(items!.map((x) => x.toJson())),
+        "totalPrice": totalPrice,
+        "deliveryAddress": deliveryAddress,
+        "courierName": courierName,
+        "shippingCost": shippingCost,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
         "publishedAt": publishedAt?.toIso8601String(),
-        "description": description,
-        "quantity": quantity,
-        "price": price,
-        "isAvailable": isAvailable,
-        "distributor": distributor,
-        "picture": picture,
+        "statusOrder": statusOrder,
+        "userId": userId,
       };
+}
 
-  @override
-  bool operator ==(covariant Attributes other) {
-    if (identical(this, other)) return true;
+class Item {
+  int? id;
+  String? productName;
+  int? price;
+  int? qty;
 
-    return other.name == name &&
-        other.createdAt == createdAt &&
-        other.updatedAt == updatedAt &&
-        other.publishedAt == publishedAt &&
-        other.description == description &&
-        other.quantity == quantity &&
-        other.price == price &&
-        other.isAvailable == isAvailable &&
-        other.distributor == distributor &&
-        other.picture == picture;
-  }
+  Item({
+    this.id,
+    this.productName,
+    this.price,
+    this.qty,
+  });
 
-  @override
-  int get hashCode {
-    return name.hashCode ^
-        createdAt.hashCode ^
-        updatedAt.hashCode ^
-        publishedAt.hashCode ^
-        description.hashCode ^
-        quantity.hashCode ^
-        price.hashCode ^
-        isAvailable.hashCode ^
-        distributor.hashCode ^
-        picture.hashCode;
-  }
+  factory Item.fromRawJson(String str) => Item.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory Item.fromJson(Map<String, dynamic> json) => Item(
+        id: json["id"],
+        productName: json["productName"],
+        price: json["price"],
+        qty: json["qty"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "productName": productName,
+        "price": price,
+        "qty": qty,
+      };
 }
 
 class Meta {

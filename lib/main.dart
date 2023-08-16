@@ -1,8 +1,10 @@
 import 'package:e_commerce_electronics/bloc/checkout/checkout_bloc.dart';
 import 'package:e_commerce_electronics/bloc/get_products/get_products_bloc.dart';
+import 'package:e_commerce_electronics/bloc/list_order/list_order_bloc.dart';
 import 'package:e_commerce_electronics/bloc/login/login_bloc.dart';
 import 'package:e_commerce_electronics/bloc/order/order_bloc.dart';
 import 'package:e_commerce_electronics/bloc/register/register_bloc.dart';
+import 'package:e_commerce_electronics/bloc/search/search_bloc.dart';
 import 'package:e_commerce_electronics/data/datasources/auth_remote_datasource.dart';
 import 'package:e_commerce_electronics/data/datasources/order_remote_datasource.dart';
 import 'package:e_commerce_electronics/data/datasources/product_remote_datasource.dart';
@@ -43,6 +45,16 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => RegisterBloc(
             AuthRemoteDatasource(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => SearchBloc(
+            ProductRemoteDatasource(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => ListOrderBloc(
+            OrderRemoteDatasource(),
           ),
         ),
       ],

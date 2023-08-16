@@ -2,6 +2,7 @@ import 'package:e_commerce_electronics/bloc/checkout/checkout_bloc.dart';
 import 'package:e_commerce_electronics/bloc/order/order_bloc.dart';
 import 'package:e_commerce_electronics/common/global_variables.dart';
 import 'package:e_commerce_electronics/common/theme.dart';
+import 'package:e_commerce_electronics/data/datasources/auth_local_datasource.dart';
 import 'package:e_commerce_electronics/data/models/order_request_model.dart';
 import 'package:e_commerce_electronics/presentation/pages/checkout/widgets/add_voucher_widget.dart';
 import 'package:e_commerce_electronics/presentation/pages/checkout/widgets/delivery_service_widget.dart';
@@ -182,7 +183,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                 child: CustomFilledButton(
                                   height: 40,
                                   title: 'Buy Now',
-                                  onPressed: () {
+                                  onPressed: () async {
+                                    final userId =
+                                        await AuthLocalDatasource().getUserId();
                                     final data = Data(
                                       items: state.items
                                           .map(
@@ -202,6 +205,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                       courierName: 'JNT',
                                       shippingCost: 25000,
                                       statusOrder: 'waitingPayment',
+                                      userId: userId,
                                     );
                                     final requestModel =
                                         OrderRequestModel(data: data);

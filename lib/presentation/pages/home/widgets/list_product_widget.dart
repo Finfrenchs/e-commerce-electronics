@@ -2,6 +2,7 @@ import 'package:e_commerce_electronics/bloc/checkout/checkout_bloc.dart';
 import 'package:e_commerce_electronics/bloc/get_products/get_products_bloc.dart';
 import 'package:e_commerce_electronics/common/theme.dart';
 import 'package:e_commerce_electronics/data/models/list_product_model.dart';
+import 'package:e_commerce_electronics/presentation/pages/detail_product/detail_product_page.dart';
 import 'package:e_commerce_electronics/presentation/widgets/box_product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,32 +82,46 @@ class _ListProductState extends State<ListProduct> {
                         final itemCount = state.items
                             .where((item) => item.id == product.id)
                             .length;
-                        return BoxProduct(
-                          imageProduct: product.attributes!.picture.toString(),
-                          name: product.attributes!.name.toString(),
-                          description:
-                              product.attributes!.description.toString(),
-                          price: product.attributes!.price!.toString(),
-                          count: '$itemCount',
-                          icon: isFavorite != true
-                              ? Icons.favorite_border_rounded
-                              : Icons.favorite_rounded,
-                          iconColor: isFavorite != true ? greyColor : redColor,
-                          onTapFavorite: () {
-                            setState(() {
-                              isFavorite = !isFavorite;
-                            });
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return DetailProductPage(product: product);
+                                },
+                              ),
+                            );
                           },
-                          onTapAdd: () {
-                            context.read<CheckoutBloc>().add(
-                                  AddToChartEvent(product: product),
-                                );
-                          },
-                          onTapRemove: () {
-                            context.read<CheckoutBloc>().add(
-                                  RemoveFromChartEvent(product: product),
-                                );
-                          },
+                          child: BoxProduct(
+                            imageProduct:
+                                product.attributes!.picture.toString(),
+                            name: product.attributes!.name.toString(),
+                            description:
+                                product.attributes!.description.toString(),
+                            price: product.attributes!.price!.toString(),
+                            count: '$itemCount',
+                            icon: isFavorite != true
+                                ? Icons.favorite_border_rounded
+                                : Icons.favorite_rounded,
+                            iconColor:
+                                isFavorite != true ? greyColor : redColor,
+                            onTapFavorite: () {
+                              setState(() {
+                                isFavorite = !isFavorite;
+                              });
+                            },
+                            onTapAdd: () {
+                              context.read<CheckoutBloc>().add(
+                                    AddToChartEvent(product: product),
+                                  );
+                            },
+                            onTapRemove: () {
+                              context.read<CheckoutBloc>().add(
+                                    RemoveFromChartEvent(product: product),
+                                  );
+                            },
+                          ),
                         );
                       }
                       return const Center(

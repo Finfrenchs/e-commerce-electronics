@@ -3,9 +3,10 @@ import 'package:e_commerce_electronics/data/datasources/auth_local_datasource.da
 import 'package:e_commerce_electronics/data/models/auth_response_model.dart';
 import 'package:e_commerce_electronics/presentation/pages/auth/login_page.dart';
 import 'package:e_commerce_electronics/presentation/pages/home/widgets/custom_bottom_appbar.dart';
-import 'package:e_commerce_electronics/presentation/profile/widgets/balance_profile_widget.dart';
-import 'package:e_commerce_electronics/presentation/profile/widgets/detail_profile_widget.dart';
-import 'package:e_commerce_electronics/presentation/profile/widgets/image_profile_widget.dart';
+import 'package:e_commerce_electronics/presentation/pages/order/list_order_page.dart';
+import 'package:e_commerce_electronics/presentation/pages/profile/widgets/balance_profile_widget.dart';
+import 'package:e_commerce_electronics/presentation/pages/profile/widgets/detail_profile_widget.dart';
+import 'package:e_commerce_electronics/presentation/pages/profile/widgets/image_profile_widget.dart';
 import 'package:e_commerce_electronics/presentation/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
@@ -36,12 +37,19 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       backgroundColor: lightBackgroundColor,
       appBar: CustomAppBar(
-        title: Center(
-          child: Text(
-            'My Profile',
-            style: blackTextStyle.copyWith(
-              fontWeight: bold,
-            ),
+        leading: InkWell(
+          onTap: () {},
+          child: const Icon(
+            Icons.menu_outlined,
+            color: blueColor,
+            size: 23,
+          ),
+        ),
+        title: Text(
+          'My Profile',
+          style: blackTextStyle.copyWith(
+            fontSize: 16,
+            fontWeight: bold,
           ),
         ),
         action: [
@@ -102,7 +110,11 @@ class _ProfilePageState extends State<ProfilePage> {
           DetailProfileWidget(
             icon: 'assets/icons/ic_order_list.png',
             title: 'Order List',
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const ListOrderPage();
+              }));
+            },
           ),
           DetailProfileWidget(
             icon: 'assets/icons/ic_logout.png',

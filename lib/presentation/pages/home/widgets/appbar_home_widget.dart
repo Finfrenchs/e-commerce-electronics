@@ -1,12 +1,20 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:badges/badges.dart' as badges;
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:e_commerce_electronics/bloc/checkout/checkout_bloc.dart';
 import 'package:e_commerce_electronics/common/theme.dart';
 import 'package:e_commerce_electronics/presentation/pages/cart/cart_page.dart';
-import 'package:flutter/material.dart';
-import 'package:badges/badges.dart' as badges;
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:e_commerce_electronics/bloc/checkout/checkout_bloc.dart';
 
 class AppBarHomeWidget extends StatelessWidget {
-  const AppBarHomeWidget({super.key});
+  final TextEditingController? controller;
+  final Function(String)? onFieldSubmitted;
+  const AppBarHomeWidget({
+    Key? key,
+    this.controller,
+    this.onFieldSubmitted,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +29,8 @@ class AppBarHomeWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               elevation: 0,
               child: TextFormField(
-                onFieldSubmitted: (_) {},
+                controller: controller,
+                onFieldSubmitted: onFieldSubmitted, //if enter, direct to result
                 decoration: InputDecoration(
                   prefixIcon: InkWell(
                     onTap: () {},

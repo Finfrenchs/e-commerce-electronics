@@ -1,6 +1,7 @@
 import 'package:e_commerce_electronics/common/theme.dart';
 import 'package:e_commerce_electronics/presentation/pages/home/home_page.dart';
-import 'package:e_commerce_electronics/presentation/profile/profile_page.dart';
+import 'package:e_commerce_electronics/presentation/pages/profile/profile_page.dart';
+
 import 'package:flutter/material.dart';
 
 class CustomBottomAppbar extends StatelessWidget {
@@ -45,7 +46,7 @@ class CustomBottomAppbar extends StatelessWidget {
           BottomNavigationBarItem(
             icon: InkWell(
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (context) {
@@ -162,7 +163,7 @@ class CustomBottomAppbar extends StatelessWidget {
           BottomNavigationBarItem(
             icon: InkWell(
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (context) {

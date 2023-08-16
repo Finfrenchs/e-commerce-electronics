@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'register_bloc.dart';
+part of 'list_order_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,58 +15,58 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$RegisterEvent {
+mixin _$ListOrderEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(RegisterRequestModel model) register,
+    required TResult Function() get,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(RegisterRequestModel model)? register,
+    TResult? Function()? get,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(RegisterRequestModel model)? register,
+    TResult Function()? get,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_Register value) register,
+    required TResult Function(_Get value) get,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_Register value)? register,
+    TResult? Function(_Get value)? get,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Register value)? register,
+    TResult Function(_Get value)? get,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RegisterEventCopyWith<$Res> {
-  factory $RegisterEventCopyWith(
-          RegisterEvent value, $Res Function(RegisterEvent) then) =
-      _$RegisterEventCopyWithImpl<$Res, RegisterEvent>;
+abstract class $ListOrderEventCopyWith<$Res> {
+  factory $ListOrderEventCopyWith(
+          ListOrderEvent value, $Res Function(ListOrderEvent) then) =
+      _$ListOrderEventCopyWithImpl<$Res, ListOrderEvent>;
 }
 
 /// @nodoc
-class _$RegisterEventCopyWithImpl<$Res, $Val extends RegisterEvent>
-    implements $RegisterEventCopyWith<$Res> {
-  _$RegisterEventCopyWithImpl(this._value, this._then);
+class _$ListOrderEventCopyWithImpl<$Res, $Val extends ListOrderEvent>
+    implements $ListOrderEventCopyWith<$Res> {
+  _$ListOrderEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -83,7 +83,7 @@ abstract class _$$_StartedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_StartedCopyWithImpl<$Res>
-    extends _$RegisterEventCopyWithImpl<$Res, _$_Started>
+    extends _$ListOrderEventCopyWithImpl<$Res, _$_Started>
     implements _$$_StartedCopyWith<$Res> {
   __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
       : super(_value, _then);
@@ -96,7 +96,7 @@ class _$_Started implements _Started {
 
   @override
   String toString() {
-    return 'RegisterEvent.started()';
+    return 'ListOrderEvent.started()';
   }
 
   @override
@@ -112,7 +112,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(RegisterRequestModel model) register,
+    required TResult Function() get,
   }) {
     return started();
   }
@@ -121,7 +121,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(RegisterRequestModel model)? register,
+    TResult? Function()? get,
   }) {
     return started?.call();
   }
@@ -130,7 +130,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(RegisterRequestModel model)? register,
+    TResult Function()? get,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -143,7 +143,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_Register value) register,
+    required TResult Function(_Get value) get,
   }) {
     return started(this);
   }
@@ -152,7 +152,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_Register value)? register,
+    TResult? Function(_Get value)? get,
   }) {
     return started?.call(this);
   }
@@ -161,7 +161,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Register value)? register,
+    TResult Function(_Get value)? get,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -171,98 +171,70 @@ class _$_Started implements _Started {
   }
 }
 
-abstract class _Started implements RegisterEvent {
+abstract class _Started implements ListOrderEvent {
   const factory _Started() = _$_Started;
 }
 
 /// @nodoc
-abstract class _$$_RegisterCopyWith<$Res> {
-  factory _$$_RegisterCopyWith(
-          _$_Register value, $Res Function(_$_Register) then) =
-      __$$_RegisterCopyWithImpl<$Res>;
-  @useResult
-  $Res call({RegisterRequestModel model});
+abstract class _$$_GetCopyWith<$Res> {
+  factory _$$_GetCopyWith(_$_Get value, $Res Function(_$_Get) then) =
+      __$$_GetCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_RegisterCopyWithImpl<$Res>
-    extends _$RegisterEventCopyWithImpl<$Res, _$_Register>
-    implements _$$_RegisterCopyWith<$Res> {
-  __$$_RegisterCopyWithImpl(
-      _$_Register _value, $Res Function(_$_Register) _then)
+class __$$_GetCopyWithImpl<$Res>
+    extends _$ListOrderEventCopyWithImpl<$Res, _$_Get>
+    implements _$$_GetCopyWith<$Res> {
+  __$$_GetCopyWithImpl(_$_Get _value, $Res Function(_$_Get) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? model = null,
-  }) {
-    return _then(_$_Register(
-      null == model
-          ? _value.model
-          : model // ignore: cast_nullable_to_non_nullable
-              as RegisterRequestModel,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$_Register implements _Register {
-  const _$_Register(this.model);
-
-  @override
-  final RegisterRequestModel model;
+class _$_Get implements _Get {
+  const _$_Get();
 
   @override
   String toString() {
-    return 'RegisterEvent.register(model: $model)';
+    return 'ListOrderEvent.get()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Register &&
-            (identical(other.model, model) || other.model == model));
+        (other.runtimeType == runtimeType && other is _$_Get);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, model);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_RegisterCopyWith<_$_Register> get copyWith =>
-      __$$_RegisterCopyWithImpl<_$_Register>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(RegisterRequestModel model) register,
+    required TResult Function() get,
   }) {
-    return register(model);
+    return get();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(RegisterRequestModel model)? register,
+    TResult? Function()? get,
   }) {
-    return register?.call(model);
+    return get?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(RegisterRequestModel model)? register,
+    TResult Function()? get,
     required TResult orElse(),
   }) {
-    if (register != null) {
-      return register(model);
+    if (get != null) {
+      return get();
     }
     return orElse();
   }
@@ -271,50 +243,45 @@ class _$_Register implements _Register {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_Register value) register,
+    required TResult Function(_Get value) get,
   }) {
-    return register(this);
+    return get(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_Register value)? register,
+    TResult? Function(_Get value)? get,
   }) {
-    return register?.call(this);
+    return get?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_Register value)? register,
+    TResult Function(_Get value)? get,
     required TResult orElse(),
   }) {
-    if (register != null) {
-      return register(this);
+    if (get != null) {
+      return get(this);
     }
     return orElse();
   }
 }
 
-abstract class _Register implements RegisterEvent {
-  const factory _Register(final RegisterRequestModel model) = _$_Register;
-
-  RegisterRequestModel get model;
-  @JsonKey(ignore: true)
-  _$$_RegisterCopyWith<_$_Register> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _Get implements ListOrderEvent {
+  const factory _Get() = _$_Get;
 }
 
 /// @nodoc
-mixin _$RegisterState {
+mixin _$ListOrderState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AuthResponseModel model) loaded,
+    required TResult Function(ListOrderResponseModel data) loaded,
     required TResult Function() failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -322,7 +289,7 @@ mixin _$RegisterState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AuthResponseModel model)? loaded,
+    TResult? Function(ListOrderResponseModel data)? loaded,
     TResult? Function()? failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -330,7 +297,7 @@ mixin _$RegisterState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AuthResponseModel model)? loaded,
+    TResult Function(ListOrderResponseModel data)? loaded,
     TResult Function()? failed,
     required TResult orElse(),
   }) =>
@@ -363,16 +330,16 @@ mixin _$RegisterState {
 }
 
 /// @nodoc
-abstract class $RegisterStateCopyWith<$Res> {
-  factory $RegisterStateCopyWith(
-          RegisterState value, $Res Function(RegisterState) then) =
-      _$RegisterStateCopyWithImpl<$Res, RegisterState>;
+abstract class $ListOrderStateCopyWith<$Res> {
+  factory $ListOrderStateCopyWith(
+          ListOrderState value, $Res Function(ListOrderState) then) =
+      _$ListOrderStateCopyWithImpl<$Res, ListOrderState>;
 }
 
 /// @nodoc
-class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
-    implements $RegisterStateCopyWith<$Res> {
-  _$RegisterStateCopyWithImpl(this._value, this._then);
+class _$ListOrderStateCopyWithImpl<$Res, $Val extends ListOrderState>
+    implements $ListOrderStateCopyWith<$Res> {
+  _$ListOrderStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -389,7 +356,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$RegisterStateCopyWithImpl<$Res, _$_Initial>
+    extends _$ListOrderStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -402,7 +369,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'RegisterState.initial()';
+    return 'ListOrderState.initial()';
   }
 
   @override
@@ -419,7 +386,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AuthResponseModel model) loaded,
+    required TResult Function(ListOrderResponseModel data) loaded,
     required TResult Function() failed,
   }) {
     return initial();
@@ -430,7 +397,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AuthResponseModel model)? loaded,
+    TResult? Function(ListOrderResponseModel data)? loaded,
     TResult? Function()? failed,
   }) {
     return initial?.call();
@@ -441,7 +408,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AuthResponseModel model)? loaded,
+    TResult Function(ListOrderResponseModel data)? loaded,
     TResult Function()? failed,
     required TResult orElse(),
   }) {
@@ -489,7 +456,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements RegisterState {
+abstract class _Initial implements ListOrderState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -502,7 +469,7 @@ abstract class _$$_LoadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadingCopyWithImpl<$Res>
-    extends _$RegisterStateCopyWithImpl<$Res, _$_Loading>
+    extends _$ListOrderStateCopyWithImpl<$Res, _$_Loading>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, _then);
@@ -515,7 +482,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'RegisterState.loading()';
+    return 'ListOrderState.loading()';
   }
 
   @override
@@ -532,7 +499,7 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AuthResponseModel model) loaded,
+    required TResult Function(ListOrderResponseModel data) loaded,
     required TResult Function() failed,
   }) {
     return loading();
@@ -543,7 +510,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AuthResponseModel model)? loaded,
+    TResult? Function(ListOrderResponseModel data)? loaded,
     TResult? Function()? failed,
   }) {
     return loading?.call();
@@ -554,7 +521,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AuthResponseModel model)? loaded,
+    TResult Function(ListOrderResponseModel data)? loaded,
     TResult Function()? failed,
     required TResult orElse(),
   }) {
@@ -602,7 +569,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements RegisterState {
+abstract class _Loading implements ListOrderState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -611,12 +578,12 @@ abstract class _$$_LoadedCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({AuthResponseModel model});
+  $Res call({ListOrderResponseModel data});
 }
 
 /// @nodoc
 class __$$_LoadedCopyWithImpl<$Res>
-    extends _$RegisterStateCopyWithImpl<$Res, _$_Loaded>
+    extends _$ListOrderStateCopyWithImpl<$Res, _$_Loaded>
     implements _$$_LoadedCopyWith<$Res> {
   __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
       : super(_value, _then);
@@ -624,13 +591,13 @@ class __$$_LoadedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? model = null,
+    Object? data = freezed,
   }) {
     return _then(_$_Loaded(
-      null == model
-          ? _value.model
-          : model // ignore: cast_nullable_to_non_nullable
-              as AuthResponseModel,
+      freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as ListOrderResponseModel,
     ));
   }
 }
@@ -638,14 +605,14 @@ class __$$_LoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Loaded implements _Loaded {
-  const _$_Loaded(this.model);
+  const _$_Loaded(this.data);
 
   @override
-  final AuthResponseModel model;
+  final ListOrderResponseModel data;
 
   @override
   String toString() {
-    return 'RegisterState.loaded(model: $model)';
+    return 'ListOrderState.loaded(data: $data)';
   }
 
   @override
@@ -653,11 +620,12 @@ class _$_Loaded implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Loaded &&
-            (identical(other.model, model) || other.model == model));
+            const DeepCollectionEquality().equals(other.data, data));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, model);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
@@ -670,10 +638,10 @@ class _$_Loaded implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AuthResponseModel model) loaded,
+    required TResult Function(ListOrderResponseModel data) loaded,
     required TResult Function() failed,
   }) {
-    return loaded(model);
+    return loaded(data);
   }
 
   @override
@@ -681,10 +649,10 @@ class _$_Loaded implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AuthResponseModel model)? loaded,
+    TResult? Function(ListOrderResponseModel data)? loaded,
     TResult? Function()? failed,
   }) {
-    return loaded?.call(model);
+    return loaded?.call(data);
   }
 
   @override
@@ -692,12 +660,12 @@ class _$_Loaded implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AuthResponseModel model)? loaded,
+    TResult Function(ListOrderResponseModel data)? loaded,
     TResult Function()? failed,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(model);
+      return loaded(data);
     }
     return orElse();
   }
@@ -740,10 +708,10 @@ class _$_Loaded implements _Loaded {
   }
 }
 
-abstract class _Loaded implements RegisterState {
-  const factory _Loaded(final AuthResponseModel model) = _$_Loaded;
+abstract class _Loaded implements ListOrderState {
+  const factory _Loaded(final ListOrderResponseModel data) = _$_Loaded;
 
-  AuthResponseModel get model;
+  ListOrderResponseModel get data;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -757,7 +725,7 @@ abstract class _$$_FailedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_FailedCopyWithImpl<$Res>
-    extends _$RegisterStateCopyWithImpl<$Res, _$_Failed>
+    extends _$ListOrderStateCopyWithImpl<$Res, _$_Failed>
     implements _$$_FailedCopyWith<$Res> {
   __$$_FailedCopyWithImpl(_$_Failed _value, $Res Function(_$_Failed) _then)
       : super(_value, _then);
@@ -770,7 +738,7 @@ class _$_Failed implements _Failed {
 
   @override
   String toString() {
-    return 'RegisterState.failed()';
+    return 'ListOrderState.failed()';
   }
 
   @override
@@ -787,7 +755,7 @@ class _$_Failed implements _Failed {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AuthResponseModel model) loaded,
+    required TResult Function(ListOrderResponseModel data) loaded,
     required TResult Function() failed,
   }) {
     return failed();
@@ -798,7 +766,7 @@ class _$_Failed implements _Failed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AuthResponseModel model)? loaded,
+    TResult? Function(ListOrderResponseModel data)? loaded,
     TResult? Function()? failed,
   }) {
     return failed?.call();
@@ -809,7 +777,7 @@ class _$_Failed implements _Failed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AuthResponseModel model)? loaded,
+    TResult Function(ListOrderResponseModel data)? loaded,
     TResult Function()? failed,
     required TResult orElse(),
   }) {
@@ -857,6 +825,6 @@ class _$_Failed implements _Failed {
   }
 }
 
-abstract class _Failed implements RegisterState {
+abstract class _Failed implements ListOrderState {
   const factory _Failed() = _$_Failed;
 }

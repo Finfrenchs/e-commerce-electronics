@@ -7,7 +7,7 @@ class GetProductsInitial extends GetProductsState {}
 class GetProductsLoading extends GetProductsState {}
 
 class GetProductsLoaded extends GetProductsState {
-  final ListProductModel data;
+  final ListProductResponseModel data;
   GetProductsLoaded({
     required this.data,
   });

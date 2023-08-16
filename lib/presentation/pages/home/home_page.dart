@@ -4,6 +4,8 @@ import 'package:e_commerce_electronics/presentation/pages/home/widgets/list_prod
 import 'package:e_commerce_electronics/presentation/pages/home/widgets/appbar_home_widget.dart';
 import 'package:e_commerce_electronics/presentation/pages/home/widgets/custom_bottom_appbar.dart';
 import 'package:e_commerce_electronics/presentation/pages/home/widgets/list_category.dart';
+import 'package:e_commerce_electronics/presentation/pages/search/search_page.dart';
+
 import 'package:e_commerce_electronics/presentation/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
@@ -16,13 +18,26 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final int page = 0;
+  final TextEditingController searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: lightBackgroundColor,
-      appBar: const CustomAppBar(
-        title: AppBarHomeWidget(),
+      appBar: CustomAppBar(
+        title: AppBarHomeWidget(
+          controller: searchController,
+          onFieldSubmitted: (_) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return SearchPage(search: searchController.text);
+                },
+              ),
+            );
+          },
+        ),
       ),
       body: ListView(
         scrollDirection: Axis.vertical,
