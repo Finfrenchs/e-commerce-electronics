@@ -8,6 +8,7 @@ import 'package:e_commerce_electronics/presentation/pages/profile/widgets/balanc
 import 'package:e_commerce_electronics/presentation/pages/profile/widgets/detail_profile_widget.dart';
 import 'package:e_commerce_electronics/presentation/pages/profile/widgets/image_profile_widget.dart';
 import 'package:e_commerce_electronics/presentation/widgets/custom_appbar.dart';
+import 'package:e_commerce_electronics/presentation/widgets/custom_fab.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -18,7 +19,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  int page = 4;
+  int page = 3;
   User? user;
 
   @override
@@ -129,7 +130,11 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ],
       ),
-      bottomNavigationBar: CustomBottomAppbar(page: page),
+      bottomNavigationBar: CustomBottomAppbar(
+        page: page,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: const CustomFloatingActionButton(),
     );
   }
 }

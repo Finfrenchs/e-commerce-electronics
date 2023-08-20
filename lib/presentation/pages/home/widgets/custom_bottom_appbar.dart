@@ -1,16 +1,52 @@
 import 'package:e_commerce_electronics/common/theme.dart';
+import 'package:e_commerce_electronics/presentation/pages/favorite/favorite_page.dart';
 import 'package:e_commerce_electronics/presentation/pages/home/home_page.dart';
+import 'package:e_commerce_electronics/presentation/pages/notification/notifications_page.dart';
 import 'package:e_commerce_electronics/presentation/pages/profile/profile_page.dart';
 
 import 'package:flutter/material.dart';
 
-class CustomBottomAppbar extends StatelessWidget {
+class CustomBottomAppbar extends StatefulWidget {
   const CustomBottomAppbar({
     super.key,
     required int page,
   }) : _page = page;
 
   final int _page;
+
+  @override
+  State<CustomBottomAppbar> createState() => _CustomBottomAppbarState();
+}
+
+class _CustomBottomAppbarState extends State<CustomBottomAppbar> {
+  int _currentPage = 0;
+
+  final List<Widget> _pages = [
+    const HomePage(),
+    const FavoritePage(),
+    const NotificationPage(),
+    const ProfilePage(),
+  ];
+
+  @override
+  void initState() {
+    _currentPage = widget._page;
+    super.initState();
+  }
+
+  void _onPageChanged(int index) {
+    setState(() {
+      _currentPage = index;
+    });
+  }
+
+  void _navigateToPage(int pageIndex) {
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (_) => _pages[pageIndex],
+        ),
+        (route) => false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +59,6 @@ class CustomBottomAppbar extends StatelessWidget {
       child: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         elevation: 1,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
         selectedLabelStyle: blueTextStyle.copyWith(
           fontSize: 12,
           fontWeight: medium,
@@ -33,167 +67,43 @@ class CustomBottomAppbar extends StatelessWidget {
           fontSize: 12,
           fontWeight: medium,
         ),
-        currentIndex: 0,
+        currentIndex: _currentPage,
         selectedItemColor: blueColor,
         unselectedItemColor: greyColor,
-        selectedFontSize: 0,
-        unselectedFontSize: 0,
         backgroundColor: whiteColor,
         iconSize: 24,
-        onTap: (index) {},
-        items: [
+        onTap: (int index) {
+          _onPageChanged(index);
+
+          // Navigasi ke halaman yang sesuai
+          _navigateToPage(index);
+        },
+        items: const [
           // HOME
           BottomNavigationBarItem(
-            icon: InkWell(
-              onTap: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const HomePage();
-                    },
-                  ),
-                );
-              },
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.home_outlined,
-                    color: _page == 0 ? blueColor : greyColor,
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    'Home',
-                    style: _page == 0
-                        ? blueTextStyle.copyWith(
-                            fontSize: 12,
-                          )
-                        : greyTextStyle.copyWith(
-                            fontSize: 12,
-                          ),
-                  ),
-                ],
-              ),
+            icon: Icon(
+              Icons.home_outlined,
             ),
             label: 'Home',
           ),
           // FAVORITE
           BottomNavigationBarItem(
-            icon: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  Icons.favorite_outline_outlined,
-                  color: _page == 1 ? blueColor : greyColor,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  'Favorite',
-                  style: _page == 1
-                      ? blueTextStyle.copyWith(
-                          fontSize: 12,
-                        )
-                      : greyTextStyle.copyWith(
-                          fontSize: 12,
-                        ),
-                ),
-              ],
+            icon: Icon(
+              Icons.favorite_outline_outlined,
             ),
             label: 'Favorite',
           ),
-          //PAY BARCODE
-          BottomNavigationBarItem(
-            icon: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(
-                  'assets/icons/ic_pay.png',
-                  width: 26,
-                  color: _page == 2 ? blueColor : greyColor,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  'Pay',
-                  style: _page == 2
-                      ? blueTextStyle.copyWith(
-                          fontSize: 12,
-                        )
-                      : greyTextStyle.copyWith(
-                          fontSize: 12,
-                        ),
-                ),
-              ],
-            ),
-            label: 'Pay',
-          ),
           // NOTIFICATION
           BottomNavigationBarItem(
-            icon: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  Icons.notifications_none_rounded,
-                  color: _page == 3 ? blueColor : greyColor,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  'Notification',
-                  style: _page == 3
-                      ? blueTextStyle.copyWith(
-                          fontSize: 12,
-                        )
-                      : greyTextStyle.copyWith(
-                          fontSize: 12,
-                        ),
-                ),
-              ],
+            icon: Icon(
+              Icons.notifications_none_rounded,
             ),
             label: 'Notifications',
           ),
           // ACCOUNT
           BottomNavigationBarItem(
-            icon: InkWell(
-              onTap: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const ProfilePage();
-                    },
-                  ),
-                );
-              },
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.account_circle_outlined,
-                    color: _page == 4 ? blueColor : greyColor,
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    'Profile',
-                    style: _page == 4
-                        ? blueTextStyle.copyWith(
-                            fontSize: 12,
-                          )
-                        : greyTextStyle.copyWith(
-                            fontSize: 12,
-                          ),
-                  ),
-                ],
-              ),
+            icon: Icon(
+              Icons.account_circle_outlined,
             ),
             label: 'Profile',
           ),

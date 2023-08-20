@@ -7,6 +7,7 @@ import 'package:e_commerce_electronics/presentation/pages/home/widgets/list_cate
 import 'package:e_commerce_electronics/presentation/pages/search/search_page.dart';
 
 import 'package:e_commerce_electronics/presentation/widgets/custom_appbar.dart';
+import 'package:e_commerce_electronics/presentation/widgets/custom_fab.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -56,6 +57,8 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: CustomBottomAppbar(
         page: page,
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: const CustomFloatingActionButton(),
     );
   }
 }

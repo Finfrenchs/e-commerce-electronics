@@ -1,16 +1,67 @@
-# e_commerce_electronics
+# E-Commerce Electronics
 
-A new Flutter project.
+This is the final project of the FIC batch 7 event. It is also my first e-commerce application.
 
-## Getting Started
+## Feature
 
-This project is a starting point for a Flutter application.
+- Login by Email with Restfull API
+- Search by Name
+- Add to Chart
+- Order Product
+- Checkout
+- Payment Using Midtrans
 
-A few resources to get you started if this is your first Flutter project:
+## Dependencies
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Following are the dependencies used in this project:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### State Management
+
+- flutter_bloc
+- freezed_annotation
+- freezed
+- json_annotation
+
+### Runner
+
+This will be used to run freezed
+
+- build_runner
+
+### UI
+
+- awesome_dialog
+- badges
+- carousel_slider
+- google_fonts
+- intl
+- lottie
+- webview_flutter
+
+### HTTP
+
+- http
+- dartz
+- shared_preferences
+
+## Back End
+
+- [E-Commerce Backend Strapi](https://github.com/Finfrenchs/e-commerce-be-strapi)
+- Restfull Api
+- Strapi (base on Node.js)
+
+## Demo Video
+
+[On Process](http://www/youtube.com)
+
+## References
+
+[ui8.net - Elektra - Electronic E-commerce UI Kit](https://ui8.net/kreativspace/products/elektra---electronic-e-commerce-ui-kit)
+
+## Upcoming Feature
+
+- Top up Wallet
+- Top Up with Midtrans
+- Categories
+- Upload Image Profile
+- Edit Profile
