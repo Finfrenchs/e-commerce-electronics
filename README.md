@@ -1,6 +1,6 @@
 # E-Commerce Electronics
 
-This is the final project of the FIC batch 7 event. It is also my first e-commerce application.
+This is the final project of the FIC batch 6 event. It is also my first e-commerce application.
 
 ## Feature
 
