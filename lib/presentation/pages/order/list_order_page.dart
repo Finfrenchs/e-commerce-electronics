@@ -98,27 +98,31 @@ class _ListOrderPageState extends State<ListOrderPage> {
                               const Spacer(),
                               Expanded(
                                 flex: 1,
-                                child: Container(
-                                  height: 30,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: order.attributes!.statusOrder ==
-                                            'purchased'
-                                        ? lightGreenColor
-                                        : lightRedColor,
+                                child: ConstrainedBox(
+                                  constraints: const BoxConstraints(
+                                    minHeight: 32,
                                   ),
-                                  child: Text(
-                                    order.attributes!.statusOrder!,
-                                    style: order.attributes!.statusOrder ==
-                                            'purchased'
-                                        ? greenTextStyle.copyWith(
-                                            fontWeight: bold,
-                                          )
-                                        : redTextStyle.copyWith(
-                                            fontWeight: bold,
-                                          ),
-                                    textAlign: TextAlign.center,
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: order.attributes!.statusOrder ==
+                                              'purchased'
+                                          ? lightGreenColor
+                                          : lightRedColor,
+                                    ),
+                                    child: Text(
+                                      order.attributes!.statusOrder!,
+                                      style: order.attributes!.statusOrder ==
+                                              'purchased'
+                                          ? greenTextStyle.copyWith(
+                                              fontWeight: bold,
+                                            )
+                                          : redTextStyle.copyWith(
+                                              fontWeight: bold,
+                                            ),
+                                      textAlign: TextAlign.center,
+                                    ),
                                   ),
                                 ),
                               ),
